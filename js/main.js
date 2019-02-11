@@ -1,6 +1,8 @@
 const PLAYER1 = 'fa-circle';
 const PLAYER2 = 'fa-times';
 let round = 1;
+let player1Result = 0;
+let player2Result = 0;
 let moves = {
     'fa-times': [],
     'fa-circle': []
@@ -22,8 +24,12 @@ const boxes = [...document.querySelectorAll('.box')];
 boxes.forEach(box => box.addEventListener('click', pick));
 const resetButton = document.querySelector("button");
 resetButton.addEventListener('click', reset);
+const winnerLabel = document.querySelector("label");
+const resultLabel = document.getElementsByClassName("result");
+resultLabel.innerText = "123321";
 
 function reset(){
+    winnerLabel.innerText = "Let's play the game!";
     board = [
         ['', '', ''],
         ['', '', ''],
@@ -56,10 +62,16 @@ function check() {
         if (combination.every(index => moves[PLAYER1].indexOf(index) > -1)) {
             winner = 'Winner: Player 1';
             boxes.forEach(box => box.removeEventListener('click', pick));
+            winnerLabel.innerText = "Winner: Player 1";
+            player1Result++;
+            resultLabel.innerText = "Circle: ${player1Result}:${player2Result} Cross";
         }
         if (combination.every(index => moves[PLAYER2].indexOf(index) > -1)) {
             winner = 'Winner: Player 2';
             boxes.forEach(box => box.removeEventListener('click', pick));
+            winnerLabel.innerText = "Winner: Player 2";
+            player1Result++;
+            resultLabel.innerText = "Circle: ${player1Result}:${player2Result} Cross";
         }
     });
     return winner;
