@@ -1,0 +1,28 @@
+body{
+
+}
+.board{
+    width: 306px;
+    background: #f0f0f0;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 100px);
+    grid-gap: 3px;
+    display: grid;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+.box{
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #222;
+}
+.box:hover{
+    background: #99999f;
+}
+.reset-button{
+    margin: 20px 0 0 110px;
+    padding: 5px;
+}
