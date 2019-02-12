@@ -31,6 +31,7 @@ const resultLabel = document.getElementById("result");
 console.log(resultLabel.innerText);
 
 function reset(){
+    round = 1;
     winnerLabel.innerText = "Let's play the game!";
     board = [
         ['', '', ''],
