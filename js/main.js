@@ -76,7 +76,7 @@ function check() {
             player2Result++;
             resultLabel.innerText = `Circle: ${player1Result}:${player2Result} Cross`;
         }
-        if(!(combination.every(index => moves[PLAYER2].indexOf(index) > -1)) && !(combination.every(index => moves[PLAYER1].indexOf(index) > -1)) && round == 10){
+        if(!(combination.every(index => moves[PLAYER2].indexOf(index) > -1)) && !(combination.every(index => moves[PLAYER1].indexOf(index) > -1)) && round === 10){
             winnerLabel.innerText = "Draw!";
         }
     });
