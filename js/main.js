@@ -22,11 +22,13 @@ const combinations = [
 
 const boxes = [...document.querySelectorAll('.box')];
 boxes.forEach(box => box.addEventListener('click', pick));
+
 const resetButton = document.querySelector("button");
 resetButton.addEventListener('click', reset);
+
 const winnerLabel = document.querySelector("label");
-const resultLabel = document.getElementsByClassName("result");
-resultLabel.innerText = "123321";
+const resultLabel = document.getElementById("result");
+console.log(resultLabel.innerText);
 
 function reset(){
     winnerLabel.innerText = "Let's play the game!";
@@ -51,6 +53,7 @@ function pick(event) {
     event.target.classList.add(turn);
     board[row][column] = turn;
     round++;
+    console.log(round);
     console.log(check());
 }
 
@@ -64,14 +67,17 @@ function check() {
             boxes.forEach(box => box.removeEventListener('click', pick));
             winnerLabel.innerText = "Winner: Player 1";
             player1Result++;
-            resultLabel.innerText = "Circle: ${player1Result}:${player2Result} Cross";
+            resultLabel.innerText = `Circle: ${player1Result}:${player2Result} Cross`;
         }
         if (combination.every(index => moves[PLAYER2].indexOf(index) > -1)) {
             winner = 'Winner: Player 2';
             boxes.forEach(box => box.removeEventListener('click', pick));
             winnerLabel.innerText = "Winner: Player 2";
-            player1Result++;
-            resultLabel.innerText = "Circle: ${player1Result}:${player2Result} Cross";
+            player2Result++;
+            resultLabel.innerText = `Circle: ${player1Result}:${player2Result} Cross`;
+        }
+        if(!(combination.every(index => moves[PLAYER2].indexOf(index) > -1)) && !(combination.every(index => moves[PLAYER1].indexOf(index) > -1)) && round == 10){
+            winnerLabel.innerText = "Draw!";
         }
     });
     return winner;
